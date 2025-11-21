@@ -18,6 +18,14 @@ export default function FoodDetails({ foodId }) {
       {foodId}
       {food.title}
       <img src={food.image} alt="" />
+      <span>
+        <strong>⏲ {food.readyInMinutes} Minutes</strong>
+        <span>
+          <strong>
+            {food.vegetarian ? "💚  Vegetarian" : " 🍖 Non-Vegetarian"}
+          </strong>
+        </span>
+      </span>
     </div>
   );
 }
