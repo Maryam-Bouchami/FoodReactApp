@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./fooddetails.module.css";
+import ListItems from "./ListItems";
 export default function FoodDetails({ foodId }) {
   const [food, setFood] = useState({});
   const URL = `https://api.spoonacular.com/recipes/${foodId}/information`;
@@ -28,7 +29,7 @@ export default function FoodDetails({ foodId }) {
             <strong>⏲ {food.readyInMinutes} Minutes </strong>
           </span>
           <span>
-            <strong>👨 👩 Serves: {food.serving} </strong>
+            <strong>👨 👩 Serves: {food.servings} </strong>
           </span>
           <span>
             <strong>
@@ -40,15 +41,18 @@ export default function FoodDetails({ foodId }) {
           </span>
         </div>
         <span>$ {food.pricePerServing / 100} Per Serving</span>
+        <ListItems food={food} isLoading={isLoading} />
         <h3>Instructions</h3>
         <div className={styles.recipeInstructions}>
-          {isLoading ? (
-            <p>isLoading...</p>
-          ) : (
-            food.analyzedInstructions[0].steps.map((step) => (
-              <li>{step.step}</li>
-            ))
-          )}
+          <ol>
+            {isLoading ? (
+              <p>isLoading...</p>
+            ) : (
+              food.analyzedInstructions[0].steps.map((step) => (
+                <li>{step.step}</li>
+              ))
+            )}
+          </ol>
         </div>
       </div>
     </div>
