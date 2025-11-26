@@ -1,13 +1,23 @@
+import styles from "./item.module.css";
 export default function Item({ item }) {
   return (
     <div>
-      <img
-        src={"https://spoonacular.com/cdn/ingredients_100x100/" + item.image}
-      />
-      <h4>{item.name}</h4>
-      <h4>
-        {item.amount} {item.unit}
-      </h4>
+      <div className={styles.itemContainer}>
+        <div className={styles.imageContainer}>
+          <img
+            className={styles.image}
+            src={
+              "https://spoonacular.com/cdn/ingredients_100x100/" + item.image
+            }
+          />
+        </div>
+        <div className={styles.nameContainer}>
+          <div className={styles.name}>{item.name}</div>
+          <div className={styles.amount}>
+            {item.amount} {item.unit}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
